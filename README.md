@@ -8,8 +8,8 @@
 | email              | string              | null: false, unique: true |
 | encrypted_password | string              | null: false               |
 | name_zenkaku       | string              | null: false               |
-| name_kana          | text                | null: false               |
-| day_of_birth       | text                | null: false               |
+| name_kana          | string              | null: false               |
+| day_of_birth       | string              | null: false               |
 
 ### Association
 
@@ -27,7 +27,7 @@
 | shipping_fee_payer                  | string     | null: false                    |
 | shipping_area                       | string     | null: false                    |
 | day_to_ship                         | string     | null: false                    |
-| day_to_ship                         | string     | null: false                    |
+| price                               | string     | null: false                    |
 | user                                | references | null: false, foreign_key: true |
 
 ### Association
