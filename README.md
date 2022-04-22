@@ -48,6 +48,7 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :shipping_info
 
 ## shipping_info table
 
@@ -57,7 +58,7 @@
 | prefecture_id                       | integer    | null: false                    |
 | municipalities                      | string     | null: false                    |
 | banchi                              | string     | null: false                    |
-| Tatemono_name                       | string     |                                |
+| tatemono_name                       | string     |                                |
 | phone                               | integer    | null: false                    |
 | purchase_record                     | references | null: false, foreign_key: true |
 
