@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @items = Item.order("created_at DESC")
   end
 
   def create
