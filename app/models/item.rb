@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :day_to_ship
   has_one_attached :image
+  has_one :purchase_record
 
   validates :image, presence: true
   validates :good_name, presence: true
