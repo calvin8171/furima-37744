@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_03_105942) do
+ActiveRecord::Schema.define(version: 2022_05_05_034447) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,11 @@ ActiveRecord::Schema.define(version: 2022_05_03_105942) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "purchase_record_shipping_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "purchase_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
@@ -55,6 +60,19 @@ ActiveRecord::Schema.define(version: 2022_05_03_105942) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_purchase_records_on_item_id"
     t.index ["user_id"], name: "index_purchase_records_on_user_id"
+  end
+
+  create_table "shipping_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "municipalities", null: false
+    t.string "banchi", null: false
+    t.string "tatemono_name"
+    t.string "phone", null: false
+    t.bigint "purchase_record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["purchase_record_id"], name: "index_shipping_infos_on_purchase_record_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,4 +97,5 @@ ActiveRecord::Schema.define(version: 2022_05_03_105942) do
   add_foreign_key "items", "users"
   add_foreign_key "purchase_records", "items"
   add_foreign_key "purchase_records", "users"
+  add_foreign_key "shipping_infos", "purchase_records"
 end
