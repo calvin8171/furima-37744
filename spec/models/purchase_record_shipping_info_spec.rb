@@ -16,9 +16,6 @@ RSpec.describe PurchaseRecordShippingInfo, type: :model do
         @purchase_record_shipping_info.tatemono_name = ''
         expect(@purchase_record_shipping_info).to be_valid
       end
-      it "tokenがあれば保存ができること" do
-        expect(@purchase_record_shipping_info).to be_valid
-      end
     end
 
     context '内容に問題がある場合' do
@@ -51,6 +48,21 @@ RSpec.describe PurchaseRecordShippingInfo, type: :model do
         @purchase_record_shipping_info.phone = ''
         @purchase_record_shipping_info.valid?
         expect(@purchase_record_shipping_info.errors.full_messages).to include("Phone can't be blank")
+      end
+      it 'phoneが9桁以下では購入できない' do
+        @purchase_record_shipping_info.phone = '123456789'
+        @purchase_record_shipping_info.valid?
+        expect(@purchase_record_shipping_info.errors.full_messages).to include("Phone needs to be 10 or 11 digits half-width numbers")
+      end
+      it 'phoneが12桁以上では購入できない' do
+        @purchase_record_shipping_info.phone = '123456789012'
+        @purchase_record_shipping_info.valid?
+        expect(@purchase_record_shipping_info.errors.full_messages).to include("Phone needs to be 10 or 11 digits half-width numbers")
+      end
+      it 'phoneに半角数字以外が含まれている場合は購入できない' do
+        @purchase_record_shipping_info.phone = '０８０１２３４５６７８'
+        @purchase_record_shipping_info.valid?
+        expect(@purchase_record_shipping_info.errors.full_messages).to include("Phone needs to be 10 or 11 digits half-width numbers")
       end
       it 'userが紐付いていないと保存できないこと' do
         @purchase_record_shipping_info.user_id = nil
