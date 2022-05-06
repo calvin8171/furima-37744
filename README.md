@@ -50,7 +50,7 @@
 - belongs_to :item
 - has_one :shipping_info
 
-## shipping_info table
+## shipping_infos table
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
@@ -59,7 +59,7 @@
 | municipalities                      | string     | null: false                    |
 | banchi                              | string     | null: false                    |
 | tatemono_name                       | string     |                                |
-| phone                               | integer    | null: false                    |
+| phone                               | string     | null: false                    |
 | purchase_record                     | references | null: false, foreign_key: true |
 
 ### Association
