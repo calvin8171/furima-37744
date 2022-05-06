@@ -6,6 +6,7 @@ FactoryBot.define do
     banchi { '1-2-3' }
     tatemono_name { '東京ハイツ' }
     phone { '08012345678' }
+    token { 'tok_abcdefghijk00000000000000000' }
   end
 end
 

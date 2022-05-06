@@ -16,6 +16,9 @@ RSpec.describe PurchaseRecordShippingInfo, type: :model do
         @purchase_record_shipping_info.tatemono_name = ''
         expect(@purchase_record_shipping_info).to be_valid
       end
+      it "tokenがあれば保存ができること" do
+        expect(@purchase_record_shipping_info).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -58,6 +61,11 @@ RSpec.describe PurchaseRecordShippingInfo, type: :model do
         @purchase_record_shipping_info.item_id = nil
         @purchase_record_shipping_info.valid?
         expect(@purchase_record_shipping_info.errors.full_messages).to include("Item can't be blank")
+      end
+      it "tokenが空では登録できないこと" do
+        @purchase_record_shipping_info.token = nil
+        @purchase_record_shipping_info.valid?
+        expect(@purchase_record_shipping_info.errors.full_messages).to include("Token can't be blank")
       end
     end
   end

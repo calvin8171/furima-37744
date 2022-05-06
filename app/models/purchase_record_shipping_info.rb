@@ -1,6 +1,6 @@
 class PurchaseRecordShippingInfo 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipalities, :banchi, :tatemono_name, :phone
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipalities, :banchi, :tatemono_name, :phone, :token
 
   with_options presence: true do
     validates :user_id
@@ -9,6 +9,7 @@ class PurchaseRecordShippingInfo
     validates :municipalities
     validates :banchi
     validates :phone, format: {with: /\A\d{10,11}\z/, message: "needs to be between 10 to 11 digits" } 
+    validates :token
   end
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
 
